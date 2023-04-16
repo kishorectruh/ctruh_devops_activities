@@ -1,6 +1,6 @@
-- hosts: nginx
+- hosts: nginx,backend
   become: true
   gather_facts: False
 
   roles:
-    - role: nginx
+    - role: docker

@@ -1,0 +1,11 @@
+---
+# handlers file for nginx
+- name: Start docker
+  service:
+    name: docker
+    state: started
+
+- name: Reload Nginx
+  service:
+    name: nginx
+    state: reloaded

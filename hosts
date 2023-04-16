@@ -1,12 +1,7 @@
-[all:vars]
-ansible_ssh_user=kishore
-
-[website]
-4.240.85.212 ansible_user=ubuntu ansible_ssh_private_key_file=./files/keys/testing.pem ansible_ssh_common_args='-o IdentitiesOnly=yes'
-
-[editor]
-20.244.4.194 ansible_user=ubuntu ansible_ssh_private_key_file=./files/keys/testing.pem ansible_ssh_common_args='-o IdentitiesOnly=yes'
+[nginx]
+4.240.85.212 ansible_user=kishore ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+20.244.4.194 ansible_user=kishore ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 
 [backend]
-20.244.4.185 ansible_user=ubuntu ansible_ssh_private_key_file=./files/keys/testing.pem ansible_ssh_common_args='-o IdentitiesOnly=yes'
+20.244.4.185 ansible_user=kishore  ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 

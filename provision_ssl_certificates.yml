@@ -1,6 +1,6 @@
-- hosts: webservers
+- hosts: nginx
   gather_facts: true
-  beorge: true
+  become: true
 
   roles:
     - role: sslcerts

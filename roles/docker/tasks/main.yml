@@ -1,0 +1,20 @@
+---
+# tasks file for nginx
+- name: install docker
+  apt_repository:
+    repo: ppa:nginx/stable
+    state: present
+
+- name: Install Docker
+  apt:
+    pkg: docker
+    state: present
+    update_cache: true
+
+
+# sudo usermod -aG docker root
+- name: Add remote  user to "docker" group
+  user:
+    name: "{{ remote_user }}"
+    group: docker
+    append: yes
