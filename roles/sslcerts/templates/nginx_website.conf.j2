@@ -1,0 +1,15 @@
+server {
+    server_name ctruh.{{ domain }} www.editor.ctruh.{{ domain }};
+    gzip on;
+    location / {
+     proxy_pass http://localhost:3000;
+    }
+
+    listen 443 ssl default_server; # managed by Certbot
+    ssl_certificate     /etc/ssl/private/ctruh-server.crt;
+    ssl_certificate_key /etc/ssl/private/ctruh-server.key;
+
+    client_max_body_size 200M;
+
+}
+

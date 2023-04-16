@@ -1,0 +1,34 @@
+---
+# tasks file for SSL Certificates
+- name: generate ssl key for server
+  openssl_privatekey:
+    path: /etc/ssl/private/ctruh-server.key
+    size: 2048 
+
+- name: generate csr 
+  openssl_csr:
+    path: /etc/ssl/private/ctruh-server.csr
+    privatekey_path: /etc/ssl/private/ctruh-server.key
+
+- name: generate certificate
+  openssl_certificate:
+    provider: selfsigned
+    path: /etc/ssl/private//ctruh-server.crt
+    privatekey_path: /etc/ssl/private/ctruh-server.key
+    csr_path: /etc/ssl/private/ctruh-server.csr
+
+- name: Remove default nginx config
+  file:
+    name: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Install system nginx config
+  template:
+    src: templates/nginx.conf.j2
+    dest: /etc/nginx/conf/ctruh.conf
+
+- name: Reload nginx to activate ssl site
+  service:
+    name: nginx
+    state: restarted
+
